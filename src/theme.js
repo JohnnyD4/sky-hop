@@ -35,5 +35,12 @@ export const theme = extendTheme({
     gray: {
       500: gray,
     },
-  }
+  },
+  styles: {
+    global: {
+      'html, body': {
+        color: primary,
+      },
+    },
+  },
 });

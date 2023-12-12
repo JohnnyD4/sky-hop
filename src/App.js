@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from './components/modal';
-import { Button } from '@chakra-ui/react';
+import { Button, Center } from '@chakra-ui/react';
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -10,12 +10,12 @@ function App() {
   };
 
   return (
-    <>
+    <Center h={'200px'}>
       <Button onClick={toggleModal}>Open Modal</Button>
       {
         modalOpen && <Modal toggleModal={toggleModal} />
       }
-    </>
+    </Center>
   );
 }
 
