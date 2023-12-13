@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sky-hop/static/css/main.e6c13ad2.css",
+    "main.js": "/sky-hop/static/js/main.164843b6.js",
+    "static/js/787.9be2daa3.chunk.js": "/sky-hop/static/js/787.9be2daa3.chunk.js",
+    "index.html": "/sky-hop/index.html",
+    "main.e6c13ad2.css.map": "/sky-hop/static/css/main.e6c13ad2.css.map",
+    "main.164843b6.js.map": "/sky-hop/static/js/main.164843b6.js.map",
+    "787.9be2daa3.chunk.js.map": "/sky-hop/static/js/787.9be2daa3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.164843b6.js"
+  ]
+}
