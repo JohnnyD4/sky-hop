@@ -66,6 +66,7 @@ function DragDropInput({ register, setValidImport }) {
           <p>Drag & Drop Here Or <Link fontWeight={'600'}>Browse</Link></p>
         </Box>
         <Button
+          aria-label={'Upload Manifest'}
           colorScheme={'primary'}
           onClick={uploadFile}
         >

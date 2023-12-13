@@ -20,6 +20,7 @@ function Footer({ toggleModal, validImport }) {
           marginBottom={'40px'}
         >
           <Button
+            aria-label={'Submit Import'}
             type={'submit'}
             w={'200px'}
             colorScheme={'primary'}
@@ -27,6 +28,7 @@ function Footer({ toggleModal, validImport }) {
             Continue Import
           </Button>
           <Button
+            aria-label={'Cancel'}
             w={'200px'}
             onClick={toggleModal}
             colorScheme={'secondary'}

@@ -11,7 +11,7 @@ function App() {
 
   return (
     <Center h={'200px'}>
-      <Button onClick={toggleModal}>Open Modal</Button>
+      <Button aria-label={'Open Modal'} onClick={toggleModal}>Open Modal</Button>
       {
         modalOpen && <Modal toggleModal={toggleModal} />
       }
