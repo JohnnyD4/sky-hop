@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
   ModalBody,
   Box,
@@ -8,15 +8,13 @@ import {
   RadioGroup,
   Stack,
   Divider,
-  Button,
-  InputGroup,
   Text,
   Switch,
   Flex,
-  Link,
 } from '@chakra-ui/react';
-import { AttachmentIcon, TimeIcon } from '@chakra-ui/icons';
-import { secondary, success } from '../../theme';
+import { TimeIcon } from '@chakra-ui/icons';
+import { success } from '../../theme';
+import DragDropInput from '../dragDropInput';
 
 const testingCenters = [
   {
@@ -37,75 +35,50 @@ const testingCenters = [
   },
 ];
 
-function Body() {
-  const inputRef = useRef(null);
-
-  const handleClick = () => inputRef.current?.click()
+function Body({ register, setValidImport }) {
   return (
     <ModalBody display={'flex'} gap={'50px'} padding={'30px 90px'}>
       <Box w={'55%'}>
-        <Select placeholder={'Select Import Name:'}>
+        <Select placeholder={'Select Import Name:'} {...register('importDropdown')}>
           <option>Option 1</option>
           <option>Option 2</option>
         </Select>
         <Divider marginY={'20px'} w={'50%'} />
-        <FormLabel>Select a manifest that you would like to import</FormLabel>
-        <Box
-          display={'flex'}
-          mt={'2'}
-          alignItems={'center'}
-          flexDirection={'column'}
-          borderWidth={'1px'}
-          borderRadius={'lg'}
-          p={'15px'}
-          gap={'4'}
-        >
-          <Box
-            display={'flex'}
-            alignItems={'center'}
-            justifyContent={'center'}
-            flexDirection={'column'}
-            borderWidth={'1px'}
-            borderRadius={'lg'}
-            borderStyle={'dashed'}
-            h={'100px'}
-            w={'100%'}
-            gap={'8px'}
-            onClick={handleClick}
-          >
-            <InputGroup >
-              <input
-                type={'file'}
-                multiple={false}
-                hidden
-                ref={(e) => {
-                  inputRef.current = e
-                }}
-              />
-            </InputGroup>
-            <AttachmentIcon color={secondary} />
-            <p>Drag & Drop Here Or <Link fontWeight={'600'}>Browse</Link></p>
-          </Box>
-          <Button colorScheme={'primary'}>Upload Manifest</Button>
-        </Box>
-        <Divider marginY={'20px'} />
-        {/* TODO Add progress bar and full divider */}
+        <DragDropInput
+          register={register}
+          setValidImport={setValidImport}
+        />
+      <Divider marginY={'20px'} />
         <Divider marginY={'20px'} w={'50%'} opacity={1} colorScheme={'primary'} />
         <FormLabel>Elapsed Data Checking:</FormLabel>
         <Text color={success}>No Elapsed Dates!</Text>
         <Divider marginY={'20px'} w={'50%'} opacity={1} colorScheme={'primary'} />
         <FormLabel htmlFor={'toleranceChecked'}>Tolerance Window:</FormLabel>
         <Flex alignItems={'center'} gap={'4px'}>
-          <Switch colorScheme={'primary'} id={'toleranceChecked'} defaultChecked />
+          <Switch {...register('toleranceChecked')} colorScheme={'primary'} id={'toleranceChecked'} defaultChecked />
           <Text fontWeight={'200'}>Toggle ON | <TimeIcon fontSize={'18px'} /> Select Tolerance Level</Text>
         </Flex>
       </Box>
       <Box>
         <FormLabel>Split schedule using social distancing?</FormLabel>
-        <RadioGroup defaultValue={'yes'}>
+        <RadioGroup defaultValue={'yes'} name={'splitSchedule'}>
           <Stack direction={'row'}>
-            <Radio size={'lg'} colorScheme={'white'} value={'yes'}>Yes</Radio>
-            <Radio size={'lg'} colorScheme={'white'} value={'no'}>No</Radio>
+            <Radio
+                {...register('splitSchedule')}
+                size={'lg'}
+                colorScheme={'white'}
+                value={'yes'}
+              >
+                Yes
+              </Radio>
+              <Radio
+                {...register('splitSchedule')}
+                size={'lg'}
+                colorScheme={'white'}
+                value={'no'}
+              >
+                No
+              </Radio>
           </Stack>
         </RadioGroup>
         <Divider marginY={'20px'} w={'50%'} opacity={1} colorScheme={'primary'} />
@@ -113,10 +86,24 @@ function Body() {
         <Text color={success}>All Available!</Text>
         <Divider marginY={'20px'} w={'50%'} opacity={1} colorScheme={'primary'} />
         <FormLabel>Client:</FormLabel>
-        <RadioGroup defaultValue={'multiple'} marginBottom={'20px'}>
+        <RadioGroup defaultValue={'multiple'} name={'client'} marginBottom={'20px'}>
           <Stack direction={'row'}>
-            <Radio size={'lg'} colorScheme={'white'} value={'single'}>Single</Radio>
-            <Radio size={'lg'} colorScheme={'white'} value={'multiple'}>Multiple</Radio>
+            <Radio
+              {...register('client')}
+              size={'lg'}
+              colorScheme={'white'}
+              value={'single'}
+            >
+              Single
+            </Radio>
+            <Radio
+              {...register('client')}
+              size={'lg'}
+              colorScheme={'white'}
+              value={'multiple'}
+            >
+              Multiple
+            </Radio>
           </Stack>
         </RadioGroup>
         {testingCenters.map((center, index) => (
@@ -128,9 +115,9 @@ function Body() {
           >
             <Text>{center.name}</Text>
             <Flex alignItems={'center'} gap={'10px'}>
-              <Select placeholder='Select Client'>
-                {center.values.map((option, index) => (
-                  <option key={index}>{option}</option>
+              <Select placeholder='Select Client' {...register(`testingCenter${index + 1}`)}>
+                {center.values.map((option, centerIndex) => (
+                  <option key={centerIndex}>{option}</option>
                 ))}
               </Select>
               <TimeIcon fontSize={'18px'} />

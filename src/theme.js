@@ -28,6 +28,7 @@ export const theme = extendTheme({
     },
     secondary: {
       500: secondary,
+      600: secondary,
     },
     success: {
       500: success,
