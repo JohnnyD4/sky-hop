@@ -13,9 +13,27 @@ function Footer({ toggleModal, validImport }) {
             Data in the import file is correct. Please press continue to import.
           </Text>
         )}
-        <Flex gap={'10px'} justifyContent={'center'} marginBottom={'40px'}>
-          <Button type={'submit'} w={'200px'} colorScheme={'primary'}>Continue Import</Button>
-          <Button w={'200px'} onClick={toggleModal} colorScheme={'secondary'} variant={'outline'}>Cancel</Button>
+        <Flex
+          flexDirection={['column', 'row']}
+          gap={'10px'}
+          justifyContent={'center'}
+          marginBottom={'40px'}
+        >
+          <Button
+            type={'submit'}
+            w={'200px'}
+            colorScheme={'primary'}
+          >
+            Continue Import
+          </Button>
+          <Button
+            w={'200px'}
+            onClick={toggleModal}
+            colorScheme={'secondary'}
+            variant={'outline'}
+          >
+            Cancel
+          </Button>
         </Flex>
 			</ModalFooter>
   );

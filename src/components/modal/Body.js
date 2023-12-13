@@ -37,8 +37,13 @@ const testingCenters = [
 
 function Body({ register, setValidImport }) {
   return (
-    <ModalBody display={'flex'} gap={'50px'} padding={'30px 90px'}>
-      <Box w={'55%'}>
+    <ModalBody
+      display={'flex'}
+      flexDirection={['column', 'row']}
+      gap={'50px'}
+      padding={['20px 40px', '30px 90px']}
+    >
+      <Box w={['auto', '55%']}>
         <Select placeholder={'Select Import Name:'} {...register('importDropdown')}>
           <option>Option 1</option>
           <option>Option 2</option>
